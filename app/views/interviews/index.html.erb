@@ -1,0 +1,53 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1 class="display-4">
+      Interviews
+    </h1>
+  </div>
+</div>
+
+
+
+<div class="row justify-content-center mb-3">
+  <div class="col-md-12">
+    <h2>Interviews</h2>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <tbody>
+          <% @interviews.each do |interview| %>
+          <tr>
+            <td>
+              Round #<%= interview.round %> on <%= interview.starts_at.strftime("%A, %d %b %Y %l:%M %p") %>
+            </td>
+
+            <td>
+              <% if interview.completed %>
+                <i class="fas fa-check-square text-success"></i>
+              <% else %>
+                <i class="fas fa-times text-danger"></i>
+              <% end %>
+            </td>
+
+
+            <td>
+              <div class="row">
+                <div class="col">
+                  <%= link_to edit_interview_url(interview), class: "" do %>
+                    <i class="fas fa-edit"></i>
+                  <% end %>
+                </div>
+
+                <div class="col">
+                  <%= link_to interview, method: :delete, data: { confirm: "Do you really want to delete this interview?" }, class: "" do %>
+                    <i class="fas fa-trash-alt"></i>
+                  <% end %>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
